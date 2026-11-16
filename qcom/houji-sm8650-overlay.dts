@@ -1,7 +1,14 @@
 /dts-v1/;
 /plugin/;
 
+#include <dt-bindings/clock/qcom,gcc-pineapple.h>
+#include <dt-bindings/clock/qcom,camcc-pineapple.h>
+#include <dt-bindings/interconnect/qcom,pineapple.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
+
 #include "houji-sm8650.dtsi"
+#include "camera/houji-sm8650-camera-sensor.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Houji based on SM8650";

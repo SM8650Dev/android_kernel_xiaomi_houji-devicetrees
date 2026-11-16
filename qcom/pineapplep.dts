@@ -1,6 +1,7 @@
 /dts-v1/;
 
 #include "pineapplep.dtsi"
+#include "camera/pineapple-camera.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. PineappleP SoC";

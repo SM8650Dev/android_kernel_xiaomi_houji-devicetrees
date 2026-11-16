@@ -11,6 +11,11 @@ add-overlays = $(foreach o,$1,$(foreach b,$2,$(eval $(basename $b)-$(basename $o
 # see DTB_TYPES from scripts/Makefile.dtbinst and install_dtbs from build.config.msm.common
 #
 
+# Camera DT bindings are supplied by the matching external camera driver.
+ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
+DTC_INCLUDE += $(srctree)/../houji-modules/camera
+endif
+
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
 
 PINEAPPLE_BASE_DTB += pineapple.dtb pineapple-v2.dtb
