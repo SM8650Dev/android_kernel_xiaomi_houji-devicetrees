@@ -1,0 +1,75 @@
+/*
+ * Xiaomi 14 Bluetooth wiring reconstructed from the user-provided
+ * OS3.0.305.0.WNCMIXM merged DTs. Provider references use source labels;
+ * GPIOs, supplies, PDC votes and SLIM channels retain the stock values.
+ */
+
+&tlmm {
+	bt_en_sleep: bt_en_sleep {
+		mux {
+			function = "gpio";
+			pins = "gpio17";
+		};
+		config {
+			bias-pull-down;
+			output-low;
+			drive-strength = <2>;
+			pins = "gpio17";
+		};
+	};
+};
+
+&soc {
+	bt_kiwi: bt_kiwi {
+		qcom,pdc_init_table =
+			"{class: wlan_pdc, ss: rf, res: s3c.v, upval: 916}",
+			"{class: wlan_pdc, ss: rf, res: s3c.v, dwnval: 612}",
+			"{class: wlan_pdc, ss: rf, res: s1c.v, upval: 1316}",
+			"{class: wlan_pdc, ss: rf, res: s1c.v, dwnval: 944}",
+			"{class: wlan_pdc, ss: rf, res: s6c.v, upval: 1864}",
+			"{class: wlan_pdc, ss: rf, res: s6c.v, dwnval: 1820}";
+		qcom,bt-vdd-rfa2-config = <1864000 1864000 0 1>;
+		qcom,bt-vdd-rfa1-config = <1316000 1316000 0 1>;
+		qcom,bt-vdd-rfaOp8-config = <916000 916000 0 1>;
+		qcom,bt-vdd-dig-config = <916000 916000 0 1>;
+		qcom,bt-vdd-aon-config = <916000 916000 0 1>;
+		qcom,bt-ant-ldo-config = <1800000 1800000 0 1>;
+		qcom,bt-vdd12-io-config = <1200000 1200000 0 1>;
+		qcom,bt-vdd18-aon-config = <1800000 1800000 0 1>;
+		qcom,bt-vdd-rfa2-supply = <&pm_v6c_s6>;
+		qcom,bt-vdd-rfa1-supply = <&pm_v6c_s1>;
+		qcom,bt-vdd-rfaOp8-supply = <&pm_v6c_s3>;
+		qcom,bt-vdd-aon-supply = <&pm_v6c_s3>;
+		qcom,bt-vdd-dig-supply = <&pm_v6c_s3>;
+		qcom,bt-ant-ldo-supply = <&pmr_nalojr_l6>;
+		qcom,bt-vdd12-io-supply = <&pm_v6c_l3>;
+		qcom,bt-vdd18-aon-supply = <&pm_humu_l15>;
+		mboxes = <&qmp_aop 0>;
+		qcom,bt-sw-ctrl-gpio = <&tlmm 18 0>;
+		qcom,wl-reset-gpio = <&tlmm 16 0>;
+		qcom,bt-reset-gpio = <&tlmm 17 0>;
+		mpm_wake_set_gpios = <18>;
+		pinctrl-0 = <&bt_en_sleep>;
+		pinctrl-names = "bt_en_sleep";
+		compatible = "qcom,kiwi";
+	};
+};
+
+&slim_msm {
+	qcom,enable-fatal;
+	status = "ok";
+
+	ngd@1 {
+		#size-cells = <1>;
+		#address-cells = <1>;
+		reg = <1>;
+
+		btfm_slim: btfmslim-driver {
+			qcom,btslimrx-channels = <157 158>;
+			qcom,btslimtx-channels = <159 160>;
+			qcom,btslim-address = <0>;
+			reg = <1 0>;
+			compatible = "slim217,221";
+		};
+	};
+};
