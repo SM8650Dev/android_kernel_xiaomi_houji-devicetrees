@@ -11,6 +11,7 @@
 #include "camera/houji-sm8650-camera-sensor.dtsi"
 #include "houji-sm8650-bluetooth.dtsi"
 #include "display/houji-sde-display.dtsi"
+#include "houji-mmrm.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Houji based on SM8650";
