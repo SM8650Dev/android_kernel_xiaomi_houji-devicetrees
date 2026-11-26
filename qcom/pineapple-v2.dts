@@ -2,6 +2,8 @@
 
 #include "pineapple-v2.dtsi"
 #include "camera/pineapple-camera-v2.dtsi"
+#include "gpu/pineapple-v2-gpu.dtsi"
+#include "gpu/pineapple-v2-gpu-pwrlevels.dtsi"
 
 / {
 	model = "Qualcomm Technologies, Inc. Pineapple v2 SoC";

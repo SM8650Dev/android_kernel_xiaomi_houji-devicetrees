@@ -29,3 +29,17 @@ base DTBs carry identical data, without provider phandle references.
 The complete dtbs build passes, and every property matches all four newly
 merged houji trees. The MMRM driver also needs the Pineapple platform match;
 the older imported driver only recognizes Waipio and Kalama internally.
+
+## GPU hardware description
+
+The original merged tree also reduced msm_gpu to a cooling-cell declaration;
+it had no compatible string, registers, GMU or KGSL context-bank wiring.
+The GPU module therefore could not bind despite compiling successfully.
+qcom/gpu links to graphics-devicetree in the same pinned OnePlus SM8650
+checkout already used for the graphics driver. The product Pineapple and
+Pineapple-v2 bases include their corresponding controller and power-level
+files. This retains separate 7.9.0 / 7.9.1 compatibles and chip IDs, matching
+the corresponding CN stock base variants; the test phone is SoC 557 v2.0.
+Full dtbs and all board-overlay applications pass. Both product merged
+trees have active GPU, GMU and KGSL context-bank nodes. GPU firmware and
+userspace operation still require device validation.
